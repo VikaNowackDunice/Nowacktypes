@@ -1,11 +1,9 @@
-const flattenConstructor = () => {
-  return (dict)=> Object.values(dict);
+var flattenConstructor = function () {
+    return function (dict) { return Object.values(dict); };
 };
-
-const flat1 = flattenConstructor();
-const r1 = flat1({ a: 1, b: 2 });
+var flat1 = flattenConstructor();
+var r1 = flat1({ a: 1, b: 2 });
 console.log(r1);
-
-const flat2 = flattenConstructor();
-const r2 = flat2({ a: '1', b: '2' });
+var flat2 = flattenConstructor();
+var r2 = flat2({ a: '1', b: '2' });
 console.log(r2);
