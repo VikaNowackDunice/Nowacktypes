@@ -7,10 +7,10 @@
 // ]
 
 
-const getRandomString = (i) => (Math.random() + i).toString(36).substring(7);
+const getRandomString = (i:number):string => (Math.random() + i).toString(36).substring(7);
 
-const generateMatrix = (n, m) => {
-    const matrix = [];
+const generateMatrix = (n:number, m:number):(number | string)[][] => {
+    const matrix:(number | string)[][] = [];
     for (let i = 0; i < n; i += 1) {
         matrix[i] = [];
         for (let j = 0; j < m; j += 1) {
@@ -24,27 +24,27 @@ const generateMatrix = (n, m) => {
     return matrix;
 }
 
-const matrix = generateMatrix(2, 3);
+const matrix= generateMatrix(2, 3);
 
-const flat = (matrix) => {
-    return matrix.reduce((acc, row) => {
+const flat = <T>(matrix:(T[][])) :T[] => {
+    return matrix.reduce((acc, row)=> {
         acc.push(...row);
         return acc;
-    }, []);
+    }, [] as T[] );
 }
-
+ 
 const list = flat(matrix);
 
-const splitByType = (list) => {
+const splitByType = (list:(number | string)[]) => {
     const result = {
-        strings: [],
-        numbers: [],
+        strings: [] as string[],
+        numbers: [] as number[],
     }
-    list.forEach((item) => {
+    list.forEach((item:(number | string))=> {
         // это нужно переделать
-        const isNaN = Number.isNaN(item / 2);
-        if (isNaN) result.strings.push(item);
-        else result.numbers.push(item);
+        const isNaN = Number.isNaN((item as number) / 2);
+        if (isNaN) result.strings.push(item as string);
+        else result.numbers.push(item as number);
     });
 
     return result;
